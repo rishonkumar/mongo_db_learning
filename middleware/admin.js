@@ -1,4 +1,4 @@
-const {Admin} = require("../db/index")
+const {Admin} = require("../db/db")
 
 // check user middleware for with async 
 function adminMiddleware(req, res, next) {
@@ -17,3 +17,5 @@ function adminMiddleware(req, res, next) {
         }
     })
 }
+
+module.exports = adminMiddleware

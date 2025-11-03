@@ -1,7 +1,18 @@
-import mongoose from "mongoose";
+const e = require("express");
+const mongoose = require("mongoose")
+require("dotenv").config()
 
-
-mongoose.connect("mongodb+srv://rishon:check1234@cluster0.k1g8c8i.mongodb.net/")
+async function connectDb() {
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log("Conneted to DB");
+    }
+    catch(err) {
+        console.log("Erro connecting to DB",err);
+        process.exit(1)
+    }
+}
+connectDb();
 
 const AdminSchema = new mongoose.Schema({
     username : String,
@@ -27,4 +38,6 @@ const Admin = mongoose.model("Admin", AdminSchema)
 const User = mongoose.model("User", UserSchema)
 const Course = mongoose.model("Course", CourseSchema)
 
-export {Admin, User, Course}
+{Admin,User,Course}
+
+module.exports = {Admin,User,Course}
