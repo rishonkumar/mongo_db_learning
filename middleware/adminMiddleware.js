@@ -6,6 +6,9 @@ function adminMiddleware(req, res, next) {
     const username = req.headers.username
     const password = req.headers.password
 
+    console.log("Inside Admin Middleware");
+
+
     Admin.findOne({
         username : username,
         password : password
